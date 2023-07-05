@@ -1,0 +1,2 @@
+!async function(){const t=await async function(){try{const t=await fetch("https://api.thecatapi.com/v1/breeds",{headers:{"x-api-key":"live_AYm3OFL5RsopcRxkS6vktyN1rahZysaNXWqUpYbk0YmAblViSMpWRz5uBAhpOooy"}});if(!t.ok)throw new Error("Failed to fetch cat breeds.");return await t.json()}catch(t){throw new Error("Failed to fetch cat breeds.")}}();console.log(t)}();
+//# sourceMappingURL=index.5533205e.js.map
