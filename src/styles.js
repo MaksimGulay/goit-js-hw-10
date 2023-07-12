@@ -1,8 +1,37 @@
 const styles = `
-  .loader {
-    display: none;
-    /* Додайте стилі для завантажувача */
+
+.loader {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: none;
+  margin: 15px;
+  position: absolute;
+  color: #000000;
+  box-sizing: border-box;
+  animation: animloader 2s linear infinite;
+}
+
+
+@keyframes animloader {
+  0% {
+    box-shadow: 14px 0 0 -2px,  38px 0 0 -2px,  -14px 0 0 -2px,  -38px 0 0 -2px;
   }
+  25% {
+    box-shadow: 14px 0 0 -2px,  38px 0 0 -2px,  -14px 0 0 -2px,  -38px 0 0 2px;
+  }
+  50% {
+    box-shadow: 14px 0 0 -2px,  38px 0 0 -2px,  -14px 0 0 2px,  -38px 0 0 -2px;
+  }
+  75% {
+    box-shadow: 14px 0 0 2px,  38px 0 0 -2px,  -14px 0 0 -2px,  -38px 0 0 -2px;
+  }
+  100% {
+    box-shadow: 14px 0 0 -2px,  38px 0 0 2px,  -14px 0 0 -2px,  -38px 0 0 -2px;
+  }
+}
+
+
 
   .error {
     display: none;
