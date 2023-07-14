@@ -1,8 +1,13 @@
 import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
+import SlimSelect from 'slim-select';
+import './styles.css';
 
 const BASE_URL = 'https://api.thecatapi.com/v1/breeds';
 
 const breedSelect = document.querySelector('.breed-select');
+const select = new SlimSelect({
+  select: breedSelect,
+});
 const catInfoDiv = document.querySelector('.cat-info');
 const loader = document.querySelector('.loader');
 const error = document.querySelector('.error');
@@ -30,13 +35,9 @@ hideError();
 fetchBreeds(BASE_URL)
   .then(breeds => {
     hideLoader();
-    breeds.forEach(breed => {
-      const option = document.createElement('option');
-      option.value = breed.id;
-      option.textContent = breed.name;
-      breedSelect.appendChild(option);
-    });
-    breedSelect.style.display = 'block';
+    select.setData(
+      breeds.map(breed => ({ value: breed.id, text: breed.name }))
+    );
   })
   .catch(error => {
     console.error('Error:', error);
@@ -64,28 +65,73 @@ breedSelect.addEventListener('change', event => {
   }
 });
 
+// function displayCatInfo(catData) {
+//   clearCatInfo();
+
+//   const catImage = document.createElement('img');
+//   catImage.src = catData.url;
+//   catImage.classList.add('cat-image');
+//   const breedInfo = document.createElement('div');
+//   breedInfo.classList.add('breed-info');
+//   const breedName = document.createElement('h2');
+//   breedName.textContent = catData.breeds[0].name;
+//   breedName.classList.add('breed-name');
+//   const description = document.createElement('p');
+//   description.textContent = catData.breeds[0].description;
+//   description.classList.add('breed-description');
+//   const temperament = document.createElement('p');
+//   temperament.textContent = `Temperament: ${catData.breeds[0].temperament}`;
+//   temperament.classList.add('breed-temperament');
+
+//   catInfoDiv.insertAdjacentHTML(
+//     'beforeend',
+//     `
+//     ${catImage.outerHTML}
+//     ${breedInfo.outerHTML}
+//   `
+//   );
+
+//   breedInfo.insertAdjacentHTML(
+//     'beforeend',
+//     `
+//     ${breedName.outerHTML}
+//     ${description.outerHTML}
+//     ${temperament.outerHTML}
+//     `
+//   );
+
+//   catInfoDiv.style.display = 'block';
+// }
 function displayCatInfo(catData) {
   clearCatInfo();
 
   const catImage = document.createElement('img');
   catImage.src = catData.url;
   catImage.classList.add('cat-image');
+
+  const breedInfo = document.createElement('div');
+  breedInfo.classList.add('breed-info');
+
   const breedName = document.createElement('h2');
   breedName.textContent = catData.breeds[0].name;
   breedName.classList.add('breed-name');
+
   const description = document.createElement('p');
   description.textContent = catData.breeds[0].description;
   description.classList.add('breed-description');
+
   const temperament = document.createElement('p');
   temperament.textContent = `Temperament: ${catData.breeds[0].temperament}`;
   temperament.classList.add('breed-temperament');
 
-  catInfoDiv.appendChild(catImage);
-  catInfoDiv.appendChild(breedName);
-  catInfoDiv.appendChild(description);
-  catInfoDiv.appendChild(temperament);
+  breedInfo.appendChild(breedName);
+  breedInfo.appendChild(description);
+  breedInfo.appendChild(temperament);
 
-  catInfoDiv.style.display = 'block';
+  catInfoDiv.appendChild(catImage);
+  catInfoDiv.appendChild(breedInfo);
+
+  catInfoDiv.style.removeProperty('display');
 }
 
 function clearCatInfo() {

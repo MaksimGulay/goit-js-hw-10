@@ -1,0 +1,44 @@
+.ss-main {
+    width: 400px;
+    margin: 0 auto;
+}
+
+body {
+    background-image: url('https://phonoteka.org/uploads/posts/2022-01/1642783016_12-phonoteka-org-p-fon-koshki-12.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+
+}
+
+.cat-info {
+    border: 2px solid gray;
+    border-radius: 20px;
+    margin-right: 200px;
+    margin-left: 200px;
+    margin-top: 30px;
+    display: flex;
+    position: relative;
+}
+
+.breed-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.cat-image {
+    width: 400px;
+    height: 250px;
+    border-radius: 20px;
+    /* object-fit: cover; */
+    margin: 30px;
+
+}
+
+.error {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
