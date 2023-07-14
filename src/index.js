@@ -65,43 +65,6 @@ breedSelect.addEventListener('change', event => {
   }
 });
 
-// function displayCatInfo(catData) {
-//   clearCatInfo();
-
-//   const catImage = document.createElement('img');
-//   catImage.src = catData.url;
-//   catImage.classList.add('cat-image');
-//   const breedInfo = document.createElement('div');
-//   breedInfo.classList.add('breed-info');
-//   const breedName = document.createElement('h2');
-//   breedName.textContent = catData.breeds[0].name;
-//   breedName.classList.add('breed-name');
-//   const description = document.createElement('p');
-//   description.textContent = catData.breeds[0].description;
-//   description.classList.add('breed-description');
-//   const temperament = document.createElement('p');
-//   temperament.textContent = `Temperament: ${catData.breeds[0].temperament}`;
-//   temperament.classList.add('breed-temperament');
-
-//   catInfoDiv.insertAdjacentHTML(
-//     'beforeend',
-//     `
-//     ${catImage.outerHTML}
-//     ${breedInfo.outerHTML}
-//   `
-//   );
-
-//   breedInfo.insertAdjacentHTML(
-//     'beforeend',
-//     `
-//     ${breedName.outerHTML}
-//     ${description.outerHTML}
-//     ${temperament.outerHTML}
-//     `
-//   );
-
-//   catInfoDiv.style.display = 'block';
-// }
 function displayCatInfo(catData) {
   clearCatInfo();
 
@@ -124,12 +87,16 @@ function displayCatInfo(catData) {
   temperament.textContent = `Temperament: ${catData.breeds[0].temperament}`;
   temperament.classList.add('breed-temperament');
 
-  breedInfo.appendChild(breedName);
-  breedInfo.appendChild(description);
-  breedInfo.appendChild(temperament);
+  breedInfo.innerHTML = `
+    ${breedName.outerHTML}
+    ${description.outerHTML}
+    ${temperament.outerHTML}
+  `;
 
-  catInfoDiv.appendChild(catImage);
-  catInfoDiv.appendChild(breedInfo);
+  catInfoDiv.innerHTML = `
+    ${catImage.outerHTML}
+    ${breedInfo.outerHTML}
+  `;
 
   catInfoDiv.style.removeProperty('display');
 }

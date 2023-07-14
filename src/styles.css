@@ -7,7 +7,6 @@ body {
     background-image: url('https://phonoteka.org/uploads/posts/2022-01/1642783016_12-phonoteka-org-p-fon-koshki-12.jpg');
     background-repeat: no-repeat;
     background-position: center center;
-
 }
 
 .cat-info {
@@ -32,7 +31,6 @@ body {
     width: 400px;
     height: 250px;
     border-radius: 20px;
-    /* object-fit: cover; */
     margin: 30px;
 
 }
